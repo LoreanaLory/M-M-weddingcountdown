@@ -49,23 +49,7 @@ body{
         );
 }
 
-/* Dezente Struktur ohne Flackern */
-.bigday-countdown::before{
-    content:"";
-    position:absolute;
-    inset:0;
 
-    background-image:
-        repeating-linear-gradient(
-            45deg,
-            rgba(255,255,255,0.015) 0px,
-            rgba(255,255,255,0.015) 1px,
-            transparent 1px,
-            transparent 10px
-        );
-
-    pointer-events:none;
-}
 
 .content{
     position:relative;

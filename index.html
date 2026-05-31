@@ -1,0 +1,148 @@
+<link href="https://fonts.googleapis.com/css2?family=Old+Standard+TT:wght@400;700&display=swap" rel="stylesheet">
+
+<div class="bigday-countdown">
+
+    <div id="timer">000:00:00:00</div>
+
+    <div class="labels">
+        <span>DAYS</span>
+        <span>HOURS</span>
+        <span>MINS</span>
+        <span>SECS</span>
+    </div>
+
+    <div class="headline">
+        BEFORE THE BIG DAY
+    </div>
+
+</div>
+
+<style>
+.bigday-countdown{
+    width:100%;
+    padding:70px 20px;
+    box-sizing:border-box;
+
+    background:
+        linear-gradient(
+            rgba(0,0,0,0.12),
+            rgba(0,0,0,0.12)
+        ),
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(255,255,255,0.08),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 50%,
+            rgba(40,54,24,0.20),
+            transparent 45%
+        ),
+        linear-gradient(
+            135deg,
+            #7a8e7c,
+            #283618
+        );
+
+    text-align:center;
+    color:white;
+    overflow:hidden;
+}
+
+#timer{
+    font-family:'Old Standard TT', serif;
+    font-size:clamp(60px,8vw,120px);
+    font-weight:700;
+    line-height:0.95;
+
+    letter-spacing:2px;
+
+    text-shadow:
+        0 2px 5px rgba(0,0,0,0.25);
+
+    margin-bottom:20px;
+}
+
+.labels{
+    display:flex;
+    justify-content:center;
+    gap:60px;
+    flex-wrap:wrap;
+
+    font-family:'Old Standard TT', serif;
+    font-size:18px;
+    letter-spacing:2px;
+
+    margin-bottom:35px;
+}
+
+.headline{
+    font-family:'Old Standard TT', serif;
+    font-size:clamp(28px,3vw,54px);
+    font-weight:700;
+
+    letter-spacing:0.5px;
+
+    text-shadow:
+        0 2px 4px rgba(0,0,0,0.20);
+}
+
+@media (max-width:768px){
+
+    .bigday-countdown{
+        padding:50px 15px;
+    }
+
+    #timer{
+        font-size:42px;
+        letter-spacing:1px;
+    }
+
+    .labels{
+        gap:18px;
+        font-size:12px;
+        letter-spacing:1px;
+    }
+
+    .headline{
+        font-size:24px;
+    }
+}
+</style>
+
+<script>
+const targetDate = new Date("2027-03-29T00:00:00").getTime();
+
+function updateCountdown() {
+
+    const now = Date.now();
+    const diff = targetDate - now;
+
+    if(diff <= 0){
+        document.getElementById("timer").innerHTML =
+        "000:00:00:00";
+        return;
+    }
+
+    const days =
+        Math.floor(diff / (1000*60*60*24));
+
+    const hours =
+        Math.floor((diff/(1000*60*60)) % 24);
+
+    const mins =
+        Math.floor((diff/(1000*60)) % 60);
+
+    const secs =
+        Math.floor((diff/1000) % 60);
+
+    document.getElementById("timer").innerHTML =
+        days + ":" +
+        String(hours).padStart(2,"0") + ":" +
+        String(mins).padStart(2,"0") + ":" +
+        String(secs).padStart(2,"0");
+}
+
+updateCountdown();
+setInterval(updateCountdown,1000);
+</script>
